@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UnauthorizedController;
+use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminRole;
 use App\Http\Middleware\SuperAdminRole;
 use App\Http\Middleware\UserRole;
@@ -40,6 +41,6 @@ Route::middleware(['auth', AdminRole::class])->group(function() {
 
 Route::middleware(['auth', UserRole::class])->group(function() {
     Route::prefix('user')->name('user.')->group(function() {
-
+        Route::get('/dashboard', [HomeController::class, 'userIndex'])->name('dashboard');
     });
 });
