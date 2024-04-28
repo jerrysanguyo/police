@@ -4,6 +4,11 @@
 <div class="container container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="card shadow border-0">
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
