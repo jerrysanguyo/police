@@ -42,12 +42,12 @@ class UserSpecialController extends Controller
         //
     }
     
-    public function update(UpdateUser_special_trainingRequest $request, User_special_training $user_special_training)
+    public function update(UpdateUser_special_trainingRequest $request, User_special_training $user_special)
     {
         $validated = $request->validated();
         $validated['user_id'] = auth()->id();
 
-        $user_special_training->update($validated);
+        $user_special->update($validated);
 
         return redirect()->route('user.dashboard')
                         ->with([
