@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User_info;
 use App\Models\User_service;
+use App\Models\User_training;
+use App\Models\User_special_training;
 
 class HomeController extends Controller
 {
@@ -35,12 +37,20 @@ class HomeController extends Controller
         $hasUserInfo = $userInfo !== null;
         $userService = User_service::where('user_id', $user_id)->first();
         $hasUserService = $userService !== null;
+        $userTraining = User_training::where('user_id', $user_id)->first();
+        $hasUserTraining = $userTraining !== null;
+        $userSpecial = User_special_training::where('user_id', $user_id)->first();
+        $hasUserSpecial = $userSpecial !== null;
     
         return view('User.index', compact(
             'hasUserInfo', 
             'userInfo',
             'hasUserService',
             'userService',
+            'userTraining',
+            'hasUserTraining',
+            'userSpecial',
+            'hasUserSpecial',
         ));
     }
 

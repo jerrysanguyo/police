@@ -5,6 +5,7 @@ use App\Http\Controllers\UnauthorizedController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserInfoController;
 use App\Http\Controllers\UserServiceController;
+use App\Http\Controllers\UserTrainingController;
 use App\Http\Middleware\AdminRole;
 use App\Http\Middleware\SuperAdminRole;
 use App\Http\Middleware\UserRole;
@@ -36,5 +37,6 @@ Route::middleware(['auth', UserRole::class])->group(function() {
             ->name('dashboard');
         Route::resource('/user_info', UserInfoController::class);
         Route::resource('/user_service', UserServiceController::class);
+        Route::resource('/user_training', UserTrainingController::class);
     });
 });
