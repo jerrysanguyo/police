@@ -26,7 +26,10 @@ class UserServiceController extends Controller
         User_service::create($validated);
     
         return redirect()->route('user.dashboard')
-                         ->with('success', 'Service information submitted successfully.');
+                         ->with([
+                            'success' => 'Service information submitted successfully.',
+                            'activeTab' => 'training'
+                        ]);
     }
     
     public function show(User_service $user_service)
@@ -47,7 +50,10 @@ class UserServiceController extends Controller
         $user_service->update($validated);
     
         return redirect()->route('user.dashboard')
-                         ->with('success', 'Service information updated successfully.');
+                         ->with([
+                            'success' => 'Service information updated successfully.',
+                            'activeTab' => 'service'
+                        ]);
     }
     
     public function destroy(User_service $user_service)
