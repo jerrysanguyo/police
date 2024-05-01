@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\User_info;
 
-class User_infoController extends Controller
+class UserInfoController extends Controller
 {
     public function index()
     {
@@ -50,7 +50,7 @@ class User_infoController extends Controller
         ]);
     
         return redirect()->route('user.dashboard')
-                         ->with('success', 'User info submitted successfully.');
+                         ->with('success', 'Service info submitted successfully.');
     }
 
     public function show(User_info $user_info)

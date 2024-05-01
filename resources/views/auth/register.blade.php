@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.auth.login-reg')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center" style="height: 80vh;">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 d-flex justify-content-center align-items-center">
