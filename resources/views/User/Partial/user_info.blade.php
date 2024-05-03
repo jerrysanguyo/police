@@ -63,7 +63,7 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <label for="bmi_result" class="form-label">BMI result:</label>
-            <input type="text" name="bmi_result" id="bmi_result" class="form-control" value="{{ $userInfo->bmi_result ?? '' }}" required>
+            <input type="number" name="bmi_result" id="bmi_result" class="form-control" value="{{ $userInfo->bmi_result ?? '' }}" required>
         </div>
         <div class="col-lg-4 col-md-6">
             <label for="bmi_category" class="form-label">BMI category:</label>

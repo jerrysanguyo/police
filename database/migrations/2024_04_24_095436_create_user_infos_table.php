@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('hip');
             $table->integer('wrist');
             $table->integer('bmi_result');
-            $table->integer('bmi_category');
+            $table->string('bmi_category');
             $table->timestamps();
         });
     }

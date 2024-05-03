@@ -16,7 +16,7 @@ class UpdateUser_special_trainingRequest extends FormRequest
         return [
             'user_id'                   => 'integer|exists:users,id',
             'special_course_training'   => 'required|string|max:255',
-            'duration'                  => 'required|integer|max:255',
+            'duration'                  => 'required|integer',
         ];
     }
 }
