@@ -15,12 +15,30 @@
         <input type="text" name="last_name" id="ln" class="form-control" value="{{ Auth::user()->last_name }}" readonly>
     </div>
 </div>
-@if($hasUserInfo)
-    @php $actionRoute = route('user.user_info.update', ['user_info' => $userInfo->id]); @endphp
+@if($hasUserInfo)  
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_info.update', ['user_info' => $userInfo->id]); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_info.update', ['user_info' => $userInfo->id]); 
+        @endphp
+    @endif
     @php $method = 'post'; @endphp
 @else
-    @php $actionRoute = route('user.user_info.store'); @endphp
-    @php $method = 'post'; @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_info.store'); 
+        @endphp
+    @else
+        @php
+            $actionRoute = route('admin.user_info.store');
+        @endphp
+    @endif
+    @php 
+        $method = 'post'; 
+    @endphp
 @endif
 <form action="{{ $actionRoute }}" method="POST">
     @csrf

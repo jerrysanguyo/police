@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\User_service;
 use App\Http\Requests\StoreUser_serviceRequest;
 use App\Http\Requests\UpdateUser_serviceRequest;
@@ -24,8 +25,10 @@ class UserServiceController extends Controller
         $validated['user_id'] = auth()->id();
     
         User_service::create($validated);
-    
-        return redirect()->route('user.dashboard')
+
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
+
+        return redirect()->route($route)
                          ->with([
                             'success' => 'Service information submitted successfully.',
                             'activeTab' => 'training'
@@ -48,8 +51,10 @@ class UserServiceController extends Controller
         $validated['user_id'] = auth()->id();
     
         $user_service->update($validated);
+
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
     
-        return redirect()->route('user.dashboard')
+        return redirect()->route($route)
                          ->with([
                             'success' => 'Service information updated successfully.',
                             'activeTab' => 'service'

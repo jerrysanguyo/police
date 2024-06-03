@@ -23,8 +23,8 @@ class User_info extends Model
         'bmi_category',
     ];
 
-    public static function getAllUser_info()
+    public static function getUser($accountId)
     {
-        return self::all();
+        return self::where('user_id', $accountId)->get();
     }
 }

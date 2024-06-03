@@ -16,8 +16,13 @@ class User_special_training extends Model
         'duration',
     ];
 
-    public static function getAllSpecial()
+    // public static function getAllSpecial()
+    // {
+    //     self::all();
+    // }
+
+    public static function getUser($accountId)
     {
-        self::all();
+        return self::where('user_id', $accountId)->get();
     }
 }

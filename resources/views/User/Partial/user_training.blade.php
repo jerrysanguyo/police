@@ -2,10 +2,26 @@
     <span class="fs-3">Training information:</span>
 </div>
 @if($hasUserTraining)
-    @php $actionRoute = route('user.user_training.update', ['user_training' => $userTraining->id]); @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_training.update', ['user_training' => $userTraining->id]); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_training.update', ['user_training' => $userTraining->id]); 
+        @endphp
+    @endif
     @php $method = 'post'; @endphp
 @else
-    @php $actionRoute = route('user.user_training.store'); @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_training.store');
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_training.store');
+        @endphp
+    @endif
     @php $method = 'post'; @endphp
 @endif
 <form action="{{ $actionRoute }}" method="POST">

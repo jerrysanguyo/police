@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\User_training;
 use App\Http\Requests\StoreUser_trainingRequest;
 use App\Http\Requests\UpdateUser_trainingRequest;
@@ -25,7 +26,9 @@ class UserTrainingController extends Controller
 
         User_training::create($validated);
 
-        return redirect()->route('user.dashboard')
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
+
+        return redirect()->route($route)
                         ->with([
                             'success'   => 'Training information submitted successfully.',
                             'activeTab' => 'special',
@@ -49,7 +52,9 @@ class UserTrainingController extends Controller
 
         $user_training->update($validated);
 
-        return redirect()->route('user.dashboard')
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
+
+        return redirect()->route($route)
                         ->with([
                             'success' => 'Training information updated successfully.',
                             'activeTab' => 'training',

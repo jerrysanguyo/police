@@ -2,11 +2,31 @@
     <span class="fs-3">Service information:</span>
 </div>
 @if($hasUserService)
-    @php $actionRoute = route('user.user_service.update', ['user_service' => $userService->id]); @endphp
-    @php $method = 'post'; @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_service.update', ['user_service' => $userService->id]); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_service.update', ['user_service' => $userService->id]); 
+        @endphp
+    @endif
+    @php 
+        $method = 'post'; 
+    @endphp
 @else
-    @php $actionRoute = route('user.user_service.store'); @endphp
-    @php $method = 'post'; @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_service.store'); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_service.store'); 
+        @endphp
+    @endif
+    @php 
+        $method = 'post'; 
+    @endphp
 @endif
 <form action="{{ $actionRoute }}" method="POST">
     @csrf

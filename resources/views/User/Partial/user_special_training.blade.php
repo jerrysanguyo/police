@@ -2,10 +2,26 @@
     <span class="fs-3">Special training information:</span>
 </div>
 @if($hasUserSpecial)
-    @php $actionRoute = route('user.user_special.update', ['user_special' => $userSpecial->id]); @endphp
+    @if (Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_special.update', ['user_special' => $userSpecial->id]); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_special.update', ['user_special' => $userSpecial->id]); 
+        @endphp
+    @endif
     @php $method = 'post'; @endphp
 @else
-    @php $actionRoute = route('user.user_special.store'); @endphp
+    @if(Auth::user()->role === 'user')
+        @php 
+            $actionRoute = route('user.user_special.store'); 
+        @endphp
+    @else
+        @php 
+            $actionRoute = route('admin.user_special.store'); 
+        @endphp
+    @endif
     @php $method = 'post'; @endphp
 @endif
 <form action="{{ $actionRoute }}" method="POST">

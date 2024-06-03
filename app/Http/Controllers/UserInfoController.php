@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User_info;
 use App\Http\Requests\StoreUser_InfoRequest;
 use App\Http\Requests\UpdateUser_InfoRequest;
@@ -27,7 +26,9 @@ class UserInfoController extends Controller
 
         User_info::create($validated);
 
-        return redirect()->route('user.dashboard')
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
+
+        return redirect()->route($route)
                         ->with([
                             'success' => 'Personal information submitted successfully.',
                             'activeTab' => 'service',
@@ -51,7 +52,9 @@ class UserInfoController extends Controller
 
         $user_info->update($validated);
 
-        return redirect()->route('user.dashboard')
+        $route = Auth::user()->role === 'user' ? 'user.dashboard' : 'admin.dashboard';
+
+        return redirect()->route($route)
                         ->with([
                             'success' => 'Personal information updated successfully',
                             'activeTab' => 'personal',

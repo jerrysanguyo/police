@@ -30,4 +30,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getAllUser()
+    {
+        return self::all();
+    }
+
+    public function userInfo()
+    {
+        return $this->hasOne(User_info::class, 'user_id', 'id');
+    }
+
+    public function userService()
+    {
+        return $this->hasOne(User_service::class, 'user_id', 'id');
+    }
+
+    public function userTraining()
+    {
+        return $this->hasOne(User_training::class, 'user_id', 'id');
+    }
+
+    public function userSpecial()
+    {
+        return $this->hasOne(User_special_training::class, 'user_id', 'id');
+    }
 }

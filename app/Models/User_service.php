@@ -20,8 +20,13 @@ class User_service extends Model
         'unit'
     ];
 
-    public static function getAllService()
+    // public static function getAllService()
+    // {
+    //     self::all();
+    // }
+
+    public static function getUser($accountId)
     {
-        self::all();
+        return self::where('user_id', $accountId)->get();
     }
 }

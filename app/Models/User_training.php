@@ -20,8 +20,13 @@ class User_training extends Model
         'date_qualifying_exam'
     ];
 
-    public static function getAllTraining()
+    // public static function getAllTraining()
+    // {
+    //     self::all();
+    // }
+
+    public static function getUser($accountId)
     {
-        self::all();
+        return self::where('user_id', $accountId)->get();
     }
 }
