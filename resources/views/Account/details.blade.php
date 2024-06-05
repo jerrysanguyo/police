@@ -181,13 +181,13 @@
                             <div class="row">
                                 <label for="course" class="col-form-label col-sm-6">Special course training:</label>
                                 <div class="col-sm-6">
-                                    <input type="text" readonly id="course" class="form-control-plaintext" value="{{ $account->userSpecial->special_course_training }}">
+                                    <input type="text" readonly id="course" class="form-control-plaintext" value="{{ $account->userSpecial->special_course_training ?? 'N/A' }}">
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="duration" class="col-form-label col-sm-6">Duration:</label>
                                 <div class="col-sm-6">
-                                    <input type="text" readonly id="duration" class="form-control-plaintext" value="{{ $account->userSpecial->duration }}">
+                                    <input type="text" readonly id="duration" class="form-control-plaintext" value="{{ $account->userSpecial->duration ?? 'N/A' }}">
                                 </div>
                             </div>
                         </div>
